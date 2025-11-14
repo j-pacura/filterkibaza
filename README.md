@@ -1,21 +1,25 @@
 # Baza Danych Firm - Filtracja i Systemy Przemysłowe
 
 ## Opis
-Kompleksowa baza danych **210 firm** i potencjalnych klientów dla firmy produkującej i sprzedającej szeroko pojętą filtrację.
+Kompleksowa baza danych **225 firm** i potencjalnych klientów dla firmy produkującej i sprzedającej szeroko pojętą filtrację.
 
-## 🎯 Ostatnia aktualizacja - dodano województwo świętokrzyskie!
+## 🎯 Najnowsza aktualizacja - rozszerzenie województwa małopolskiego!
 
-### ✨ Nowy region w bazie:
-**WOJEWÓDZTWO ŚWIĘTOKRZYSKIE** - 20 firm:
-- 🏭 **Cementownie**: CEMEX Ożarów, Lafarge Małogoszcz - największe zakłady w regionie
-- ⛏️ **Górnictwo**: Kopalnie wapienia (Morawica), wapna (Lhoist Bukowa), kamienia (Górno)
-- 🔥 **Materiały ogniotrwałe**: Ożarów S.A. - hutnictwo wysokotemperaturowe
-- 🏗️ **Metalurgia i odlewnictwo**: Odlewnie, konstrukcje stalowe
-- 🥛 **Przemysł spożywczy**: OSM Starachowice, Sokołów, Pepees
-- 💧 **Wodociągi**: PWiK Kielce, PWiK Ostrowiec
-- 🧱 **Materiały budowlane**: Prefabet, ceramika budowlana
-- ⚡ **Energetyka**: Elektrociepłownia Kielce
-- 🤝 **Partnerzy lokalni**: KLIMEX, VENTUS - systemy HVAC
+### ✨ Ostatnie aktualizacje:
+1. **ŚWIĘTOKRZYSKIE** 🆕 - 20 firm (cementownie, górnictwo, metalurgia)
+2. **MAŁOPOLSKIE** ⬆️ - +15 firm (wodociągi, mleczarnie, galwanizery, partnerzy)
+
+**Małopolskie teraz: 45 firm** (było 30, dodano 15)
+
+### 📍 Nowe firmy w małopolskim:
+- 💧 **Wodociągi**: PWiK Tarnów, MPWiK Nowy Sącz
+- 🥛 **Mleczarnie**: OSM Kraków, Mlekpol Nowy Sącz
+- 🍺 **Browar**: Browar Zamkowy Cieszyn
+- 🥩 **Mięso**: Tarczyński Kraków
+- ⚙️ **Galwanizery**: Galwanika Kraków, Chromowanie Tarnów
+- 🧱 **Ceramika**: Keramika Dobczyce
+- 🎨 **Chemia**: LERG - lakiery
+- 🤝 **Partnerzy**: Filtry-Serwis, Technika Odpylania, WENTPOL
 
 ## Struktura danych
 
@@ -26,9 +30,9 @@ Kompleksowa baza danych **210 firm** i potencjalnych klientów dla firmy produku
 ### Pola w bazie danych
 - **id**: Unikalny identyfikator firmy
 - **name**: Nazwa firmy
-- **region**: Województwo (np. dolnośląskie, śląskie, świętokrzyskie)
+- **region**: Województwo
 - **city**: Miasto
-- **industry**: Branża (np. motoryzacja, chemia, energetyka, cementownie)
+- **industry**: Branża (motoryzacja, chemia, energetyka, cementownie, filtry przemysłowe)
 - **employees**: Liczba pracowników
 - **revenue**: Przychody (jeśli dostępne)
 - **potential**: Potencjał współpracy (wysoki/średni)
@@ -44,8 +48,8 @@ Kompleksowa baza danych **210 firm** i potencjalnych klientów dla firmy produku
 ## Statystyki
 
 ### Podział według województw:
+- **małopolskie** ⬆️: 45 firm
 - **mazowieckie** : 41 firm
-- **małopolskie** : 30 firm
 - **łódzkie** : 22 firm
 - **wielkopolskie** : 20 firm
 - **świętokrzyskie** 🆕: 20 firm
@@ -60,9 +64,9 @@ Kompleksowa baza danych **210 firm** i potencjalnych klientów dla firmy produku
 - **pomorskie** : 1 firm
 
 ### Podział według typu:
-- **klient**: 137 firm (65.2%)
-- **partner**: 41 firm (19.5%)
-- **potencjalny klient**: 32 firm (15.2%)
+- **klient**: 147 firm (65.3%)
+- **partner**: 44 firm (19.6%)
+- **potencjalny klient**: 34 firm (15.1%)
 
 ### Top 20 branż:
 1. **motoryzacja**: 16 firm
@@ -70,70 +74,71 @@ Kompleksowa baza danych **210 firm** i potencjalnych klientów dla firmy produku
 3. **chemia**: 13 firm
 4. **farmacja**: 10 firm
 5. **spożywczy**: 9 firm
-6. **hvac**: 7 firm
-7. **filtry przemysłowe**: 6 firm
-8. **woda i ścieki**: 6 firm
-9. **woda**: 5 firm
-10. **spożywcza**: 4 firm
-11. **metalurgia**: 4 firm
-12. **elektrotechnika**: 4 firm
-13. **it**: 4 firm
-14. **spożywczy - mleczarstwo**: 4 firm
-15. **górnictwo**: 3 firm
-16. **przemysł drzewny**: 3 firm
-17. **hutnictwo**: 3 firm
-18. **cementownie**: 3 firm
-19. **tekstylia**: 3 firm
-20. **elektronika**: 3 firm
+6. **woda i ścieki**: 8 firm
+7. **hvac**: 7 firm
+8. **filtry przemysłowe**: 7 firm
+9. **spożywczy - mleczarstwo**: 6 firm
+10. **woda**: 5 firm
+11. **spożywcza**: 4 firm
+12. **metalurgia**: 4 firm
+13. **elektrotechnika**: 4 firm
+14. **it**: 4 firm
+15. **HVAC**: 4 firm
+16. **górnictwo**: 3 firm
+17. **przemysł drzewny**: 3 firm
+18. **hutnictwo**: 3 firm
+19. **cementownie**: 3 firm
+20. **tekstylia**: 3 firm
 
 
 ## Kategorie firm
 
-### 1. Klienci (137 firm) - 65.2%
+### 1. Klienci (147 firm) - 65.3%
 Firmy, które mogą być bezpośrednimi odbiorcami produktów filtracyjnych:
 
 **Przemysł ciężki z wysokim zapotrzebowaniem na filtrację:**
-- **Hutnictwo i metalurgia**: Huty stali, odlewnie, konstrukcje stalowe
-- **Górnictwo**: Kopalnie węgla, miedzi, wapienia, kamienia
+- **Hutnictwo i metalurgia**: Huty stali, odlewnie, konstrukcje stalowe, galwanizery
+- **Górnictwo**: Kopalnie węgla, miedzi, wapienia, kamienia - systemy odpylania
 - **Energetyka**: Elektrownie, elektrociepłownie - filtracja spalin
-- **Cementownie**: CEMEX, Lafarge, Górażdże - intensywne odpylanie
+- **Cementownie**: CEMEX, Lafarge, Górażdże - największe źródła pyłów
 
 **Przemysł motoryzacyjny:**
 - **Fabryki samochodów**: VW, Toyota, Mercedes, Stellantis
-- **Baterie do EV**: LG Energy Solution
+- **Baterie do EV**: LG Energy Solution (10,000 pracowników)
 - **Komponenty**: Lakiernie, odlewnie, części
 
 **Chemia i petrochemia:**
-- **Rafinerie**: PKN Orlen, Lotos
+- **Rafinerie**: PKN Orlen Płock
 - **Zakłady chemiczne**: Grupa Azoty, Synthos, Ciech
-- **Materiały specjalistyczne**: Żywice, plastyfikatory
+- **Lakiery i farby**: LERG, producenci chemii specjalistycznej
 
 **Farmacja i biotechnologia:**
 - Producenci leków wymagający czystych pomieszczeń klasy GMP
 - Czyste pomieszczenia HEPA, filtry absolutne
+- Genexo, Selvita, Biomed, Adamed
 
 **Przemysł spożywczy:**
-- **Mleczarnie**: Mlekovita, Mlekpol, Piątnica, OSM
-- **Browary**: Heineken, Kompania Piwowarska
+- **Mleczarnie**: Mlekovita, Mlekpol, Piątnica, OSM (Kraków, Starachowice)
+- **Browary**: Heineken, Kompania Piwowarska, Browar Zamkowy
 - **Woda mineralna**: Żywiec Zdrój, Cisowianka
-- **Przetwórstwo**: Sokołów, Maspex
+- **Przetwórstwo mięsne**: Sokołów, Tarczyński
 
 **Przemysł papierniczy i drzewny:**
-- **Papiernie**: Mondi, International Paper
+- **Papiernie**: Mondi Świecie, International Paper
 - **Płyty drewnopochodne**: Kronospan, Swiss Krono - odpylanie trocin
 
-**Wodociągi i oczyszczalnie:**
-- MPWiK (Warszawa, Kraków, Wrocław, Łódź, Kielce)
-- Aquanet, Veolia - filtracja wody i ścieków
+**Wodociągi i oczyszczalnie (13 firm):**
+- MPWiK (Warszawa, Kraków, Wrocław, Łódź, Kielce, Tarnów, Nowy Sącz)
+- Aquanet, Veolia - filtracja wody i oczyszczanie ścieków
 
-### 2. Potencjalni klienci (32 firm) - 15.2%
+### 2. Potencjalni klienci (34 firm) - 15.1%
 Firmy z wysokim potencjałem do nawiązania współpracy:
 - Zakłady produkcyjne z potrzebą filtracji
-- Galwanizery i cynkownie
+- **Galwanizery i cynkownie**: Chromowanie, niklowanie - filtracja oparów
 - Lakiernie przemysłowe
 - Zakłady obróbki powierzchniowej
 
-### 3. Partnerzy (41 firm) - 19.5%
+### 3. Partnerzy (44 firm) - 19.6%
 Dystrybutorzy, producenci i specjaliści w zakresie filtracji:
 
 **Producenci filtrów - światowi liderzy:**
@@ -142,21 +147,18 @@ Dystrybutorzy, producenci i specjaliści w zakresie filtracji:
 - Filtry Polska, SFM Filtry, Filtrotechnika
 
 **Systemy HVAC i wentylacja:**
-- Airkom, Invent, Klimazbyt, Pro-Vent
+- Airkom, Invent, Klimazbyt, Pro-Vent, WENTPOL
 - Carline, Systemcold, KLIMEX Kielce
 - Serwis Klimatyzacji Przemysłowej
 
-**Dystrybutorzy i hurtownie:**
-- Rubix Poland (MRO)
-- Tech-Fil, Ekol-Serwis
+**Dystrybutorzy i serwisy:**
+- Rubix Poland (MRO), Filtry-Serwis Kraków
+- Tech-Fil, Ekol-Serwis, Technika Odpylania
 - VENTUS - wentylacja przemysłowa
 
 **Technologie lakiernicze:**
 - Durr, Eisenmann
 - CSV, Colorex
-
-**Filtracja wody:**
-- Biower, Eko-Bio
 
 ## Kluczowe branże wymagające filtracji
 
@@ -172,35 +174,40 @@ Dystrybutorzy, producenci i specjaliści w zakresie filtracji:
    - Turbiny gazowe - filtry powietrza
    - Kotłownie - odpylanie
 
-3. **Cementownie** (4 firm)
+3. **Cementownie** (3 firm) ⭐
    - Największe źródła pyłów przemysłowych
    - Filtry workowe, elektrofiltry
-   - CEMEX, Lafarge, Górażdże, Ożarów
+   - CEMEX, Lafarge, Górażdże
 
-4. **Chemia** (13 firm)
+4. **Chemia** (14 firm)
    - Procesy technologiczne wymagające czystości
-   - Filtracja gazów procesowych
+   - Filtracja gazów procesowych, rozpuszczalników
    - Czyste pomieszczenia
 
-5. **Farmacja** (10 firm)
+5. **Farmacja i biotechnologia** (11 firm)
    - Czyszczenie HEPA, filtry absolutne
    - Pomieszczenia klasy GMP
    - Najwyższe wymagania czystości
 
-6. **Spożywcza** (14 firm)
+6. **Spożywcza** (15+ firm)
    - Mleczarnie - filtracja powietrza w produkcji
    - Browary - filtracja technologiczna
    - Piekarnie - odpylanie mąki
 
-7. **Górnictwo** (8 firm)
+7. **Górnictwo** (11 firm)
    - Kopalnie węgla, miedzi, wapienia
    - Kamieniołomy - intensywne odpylanie
    - Kopalnie odkrywkowe
 
-8. **Woda i ścieki** (11 firm)
+8. **Woda i ścieki** (13 firm)
    - Oczyszczalnie ścieków
    - Stacje uzdatniania wody
    - Systemy filtracji membranowej
+
+9. **Galwanizacja** (3 firm)
+   - Chromowanie, niklowanie, cynkowanie
+   - Filtracja oparów kąpieli galwanicznych
+   - Oczyszczanie powietrza
 
 ## Wykorzystanie
 
@@ -214,21 +221,21 @@ with open('filterkibaza_database.json', 'r', encoding='utf-8') as f:
 # Pobierz wszystkie firmy
 companies = data['companies']
 
-# Firmy z województwa świętokrzyskiego
-swietokrzyskie = data['by_region']['świętokrzyskie']
-print(f"Firmy ze świętokrzyskiego: {len(swietokrzyskie)}")
+# Firmy z województwa małopolskiego
+malopolskie = data['by_region']['małopolskie']
+print(f"Małopolskie: {len(malopolskie)} firm")
 
 # Cementownie (wysokie zapotrzebowanie na filtry)
 cementownie = [c for c in companies if 'cement' in c.get('industry', '').lower()]
 
+# Wodociągi - filtracja wody
+wodociagi = [c for c in companies if 'woda' in c.get('industry', '').lower()]
+
 # Partnerzy (dystrybutorzy/producenci filtrów)
 partners = [c for c in companies if c['type'] == 'partner']
 
-# Klienci z branży spożywczej
-food_industry = [c for c in companies if 'spożyw' in c.get('industry', '').lower()]
-
-# Top firmy z wysokim potencjałem
-high_potential = [c for c in companies if c.get('potential') == 'wysoki']
+# Galwanizery - filtracja oparów
+galwanizery = [c for c in companies if 'galwaniz' in c.get('industry', '').lower()]
 ```
 
 ### JavaScript
@@ -238,8 +245,8 @@ fetch('filterkibaza_database.json')
   .then(data => {
     console.log(`Total companies: ${data.metadata.total_companies}`);
     
-    // Firmy ze świętokrzyskiego
-    const swietokrzyskie = data.by_region['świętokrzyskie'];
+    // Firmy z małopolskiego
+    const malopolskie = data.by_region['małopolskie'];
     
     // Filtruj partnerów
     const partners = data.companies.filter(c => c.type === 'partner');
@@ -249,48 +256,47 @@ fetch('filterkibaza_database.json')
       c.industry && c.industry.includes('cement')
     );
     
-    // Grupuj według branży
-    const byIndustry = {};
-    data.companies.forEach(c => {
-      const ind = c.industry || 'unknown';
-      byIndustry[ind] = (byIndustry[ind] || 0) + 1;
-    });
+    // Wodociągi
+    const water = data.companies.filter(c =>
+      c.industry && c.industry.includes('woda')
+    );
   });
 ```
 
 ## 📊 Podsumowanie wartości dla biznesu
 
 ### Potencjał rynkowy:
-- **169 klientów** wymagających filtracji
-- **41 partnerów** do współpracy i dystrybucji
+- **181 klientów** wymagających filtracji
+- **44 partnerów** do współpracy i dystrybucji
 - Pokrycie **14 województw** w Polsce
-- **92 branż** przemysłowych
+- **96 branż** przemysłowych
 
 ### Najważniejsze segmenty:
 
-| Segment | Liczba firm | Potencjał |
-|---------|-------------|-----------|
-| 🚗 Motoryzacja | 16 | Wysoki - lakiernie, spawalnie |
-| ⚡ Energetyka | 14 | Wysoki - filtry spalin |
-| 🏭 Cementownie | 3 | Bardzo wysoki - odpylanie |
-| 🧪 Chemia | 13 | Wysoki - procesy technologiczne |
-| 💊 Farmacja | 10 | Bardzo wysoki - czyszczenie HEPA |
-| 🍶 Spożywcza | 13+ | Średni/Wysoki - higiena produkcji |
-| ⛏️ Górnictwo | 8 | Wysoki - odpylanie |
-| 💧 Woda/ścieki | 11 | Średni - oczyszczalnie |
+| Segment | Liczba firm | Potencjał | Charakterystyka |
+|---------|-------------|-----------|-----------------|
+| 🚗 Motoryzacja | 16 | Wysoki | Lakiernie, spawalnie, obróbka |
+| ⚡ Energetyka | 14 | Wysoki | Filtry spalin, elektrofiltry |
+| 🏭 Cementownie | 3 | Bardzo wysoki | Największe źródła pyłów |
+| 🧪 Chemia | 13 | Wysoki | Procesy technologiczne |
+| 💊 Farmacja | 10 | Bardzo wysoki | Czyszczenie HEPA |
+| 🍶 Spożywcza | 15+ | Średni/Wysoki | Higiena produkcji |
+| ⛏️ Górnictwo | 11 | Wysoki | Odpylanie |
+| 💧 Woda/ścieki | 13 | Średni | Oczyszczalnie |
+| ⚙️ Galwanizacja | 3 | Wysoki | Filtracja oparów |
 
 ### Geografia - pokrycie rynku:
 
-**Regiony z największą liczbą firm:**
+**Top 5 regionów:**
 1. 🏆 Mazowieckie (41 firm) - Warszawa, PKN Orlen
-2. 🥈 Małopolskie (30 firm) - Kraków, Grupa Azoty, Synthos
+2. 🥈 Małopolskie (45 firm) ⬆️ - Kraków, Azoty, Synthos, mleczarnie
 3. 🥉 Łódzkie (22 firm) - Łódź, PGE Bełchatów
-4. Świętokrzyskie (20 firm) 🆕 - cementownie, górnictwo
+4. Świętokrzyskie (20 firm) 🆕 - Cementownie, górnictwo
 5. Wielkopolskie (20 firm) - Poznań, VW
 
 ## 🎯 Specjalne segmenty dla filtracji
 
-### Cementownie i wapienniki (największe zapotrzebowanie):
+### Cementownie i wapienniki (najwyższe zapotrzebowanie):
 - CEMEX Ożarów, Lafarge Małogoszcz
 - Górażdże Cement, Ożarów S.A.
 - Wymagania: Filtry workowe dużej wydajności, elektrofiltry
@@ -301,15 +307,23 @@ fetch('filterkibaza_database.json')
 - Wymagania: Odpylanie, filtry robocze
 
 ### Mleczarnie (higieniczne środowisko):
-- Mlekovita, Mlekpol, Piątnica, OSM
+- Mlekovita, Mlekpol, Piątnica, OSM (Kraków, Starachowice)
 - Wymagania: Filtry absolutne, HEPA dla pomieszczeń produkcyjnych
+
+### Galwanizery (ochrona środowiska):
+- Galwanika Kraków, Chromowanie Tarnów
+- Cynkowania ogniowe, galwanizacja
+- Wymagania: Filtracja oparów kąpieli, oczyszczanie powietrza
 
 ## Aktualizacja
 - **Data utworzenia**: 2025-11-14
 - **Wersja**: 1.0
-- **Ostatnia aktualizacja**: 2025-11-14
-  - Dodano 35 firm (producenci filtrów, mleczarnie, wodociągi)
-  - Dodano 20 firm z województwa świętokrzyskiego 🆕
+- **Historia aktualizacji**:
+  - 2025-11-14: Dodano 35 firm (producenci filtrów, mleczarnie, wodociągi)
+  - 2025-11-14: Dodano 20 firm z województwa świętokrzyskiego 🆕
+  - 2025-11-14: Dodano 15 firm do małopolskiego ⬆️ (wodociągi, mleczarnie, galwanizery)
+
+**Łącznie: 225 firm w 14 województwach**
 
 ## Licencja
 Dane przeznaczone do użytku wewnętrznego firmy.
