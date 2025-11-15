@@ -25,6 +25,7 @@ export function filterCompanies(
     industries?: string[];
     types?: string[];
     potential?: string[];
+    sizes?: string[];
   }
 ): Company[] {
   return companies.filter((company) => {
@@ -56,6 +57,11 @@ export function filterCompanies(
     // Potential filter
     if (filters.potential && filters.potential.length > 0) {
       if (!filters.potential.includes(company.potential)) return false;
+    }
+
+    // Size filter
+    if (filters.sizes && filters.sizes.length > 0) {
+      if (!company.size || !filters.sizes.includes(company.size)) return false;
     }
 
     return true;

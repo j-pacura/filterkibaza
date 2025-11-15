@@ -30,6 +30,7 @@ const defaultFilters: FilterState = {
   industries: [],
   types: [],
   potential: [],
+  sizes: [],
   employeesRange: [0, 100000],
 };
 

@@ -7,7 +7,8 @@ export interface Company {
   employees: string;
   revenue?: string;
   potential: 'wysoki' | 'średni' | 'niski';
-  type: 'klient' | 'partner' | 'potencjalny klient';
+  type: 'partner' | 'potencjalny klient';
+  size?: 'mała' | 'średnia' | 'duża' | 'nieznana';
   lat: number;
   lng: number;
   address: string;
@@ -34,6 +35,7 @@ export interface CompanyDatabase {
     by_region: Record<string, number>;
     by_type: Record<string, number>;
     by_industry: Record<string, number>;
+    by_size: Record<string, number>;
   };
 }
 
@@ -41,8 +43,9 @@ export interface FilterState {
   searchQuery: string;
   regions: string[];
   industries: string[];
-  types: ('klient' | 'partner' | 'potencjalny klient')[];
+  types: ('partner' | 'potencjalny klient')[];
   potential: ('wysoki' | 'średni' | 'niski')[];
+  sizes: ('mała' | 'średnia' | 'duża')[];
   employeesRange: [number, number];
 }
 

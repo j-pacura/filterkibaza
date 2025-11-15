@@ -46,7 +46,6 @@ const createCustomIcon = (color: string) => {
 };
 
 const markerIcons = {
-  klient: createCustomIcon('#00C853'),
   partner: createCustomIcon('#FF6B35'),
   'potencjalny klient': createCustomIcon('#9C27B0'),
 };
@@ -117,16 +116,12 @@ export function InteractiveMap({
                     </h3>
                     <span
                       className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                        company.type === 'klient'
-                          ? 'bg-green-100 text-green-800'
-                          : company.type === 'partner'
+                        company.type === 'partner'
                           ? 'bg-orange-100 text-orange-800'
                           : 'bg-purple-100 text-purple-800'
                       }`}
                     >
-                      {company.type === 'klient'
-                        ? 'Klient'
-                        : company.type === 'partner'
+                      {company.type === 'partner'
                         ? 'Partner'
                         : 'Potencjalny klient'}
                     </span>

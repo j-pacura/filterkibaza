@@ -5,7 +5,6 @@ import { Loading } from '@/components/common/Loading';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const COLORS = {
-  klient: '#00C853',
   partner: '#FF6B35',
   'potencjalny klient': '#9C27B0',
 };

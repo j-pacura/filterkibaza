@@ -10,7 +10,6 @@ interface CompanyCardProps {
 
 export function CompanyCard({ company, index }: CompanyCardProps) {
   const typeColors = {
-    klient: 'border-green-500 bg-green-50',
     partner: 'border-orange-500 bg-orange-50',
     'potencjalny klient': 'border-purple-500 bg-purple-50',
   };
@@ -34,9 +33,7 @@ export function CompanyCard({ company, index }: CompanyCardProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <span
               className={`px-3 py-1 rounded-full text-xs font-medium ${
-                company.type === 'klient'
-                  ? 'bg-green-100 text-green-800'
-                  : company.type === 'partner'
+                company.type === 'partner'
                   ? 'bg-orange-100 text-orange-800'
                   : 'bg-purple-100 text-purple-800'
               }`}

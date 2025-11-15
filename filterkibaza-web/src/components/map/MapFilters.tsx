@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Filter, MapPin, Building2, Target } from 'lucide-react';
+import { X, Filter, MapPin, Building2, Target, Users } from 'lucide-react';
 import { useFilters } from '@/hooks/useFilters';
 import { useMemo } from 'react';
 import { useStore } from '@/stores/useStore';
@@ -22,7 +22,8 @@ export function MapFilters({ isOpen, onClose }: MapFiltersProps) {
     return Array.from(new Set(companies.map((c) => c.industry))).sort();
   }, [companies]);
 
-  const companyTypes = ['klient', 'partner', 'potencjalny klient'] as const;
+  const companyTypes = ['partner', 'potencjalny klient'] as const;
+  const companySizes = ['mała', 'średnia', 'duża'] as const;
 
   const handleRegionToggle = (region: string) => {
     const newRegions = filters.regions.includes(region)
@@ -43,6 +44,13 @@ export function MapFilters({ isOpen, onClose }: MapFiltersProps) {
       ? filters.types.filter((t) => t !== type)
       : [...filters.types, type];
     setFilters({ types: newTypes });
+  };
+
+  const handleSizeToggle = (size: typeof companySizes[number]) => {
+    const newSizes = filters.sizes.includes(size)
+      ? filters.sizes.filter((s) => s !== size)
+      : [...filters.sizes, size];
+    setFilters({ sizes: newSizes });
   };
 
   return (
@@ -92,7 +100,8 @@ export function MapFilters({ isOpen, onClose }: MapFiltersProps) {
               {/* Reset Button */}
               {(filters.regions.length > 0 ||
                 filters.industries.length > 0 ||
-                filters.types.length > 0) && (
+                filters.types.length > 0 ||
+                filters.sizes.length > 0) && (
                 <button
                   onClick={resetFilters}
                   className="w-full mb-6 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors text-sm font-medium"
@@ -121,19 +130,45 @@ export function MapFilters({ isOpen, onClose }: MapFiltersProps) {
                       />
                       <span
                         className={`w-3 h-3 rounded-full ${
-                          type === 'klient'
-                            ? 'bg-green-500'
-                            : type === 'partner'
+                          type === 'partner'
                             ? 'bg-orange-500'
                             : 'bg-purple-500'
                         }`}
                       />
                       <span className="text-sm text-gray-700">
-                        {type === 'klient'
-                          ? 'Klient'
-                          : type === 'partner'
+                        {type === 'partner'
                           ? 'Partner'
                           : 'Potencjalny klient'}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Size Filter */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Users className="w-4 h-4 text-gray-400" />
+                  <h3 className="font-semibold text-gray-900">Wielkość firmy</h3>
+                </div>
+                <div className="space-y-2">
+                  {companySizes.map((size) => (
+                    <label
+                      key={size}
+                      className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={filters.sizes.includes(size)}
+                        onChange={() => handleSizeToggle(size)}
+                        className="w-4 h-4 text-primary rounded focus:ring-2 focus:ring-primary"
+                      />
+                      <span className="text-sm text-gray-700 capitalize">
+                        {size === 'mała'
+                          ? 'Mała (do 100 pracowników)'
+                          : size === 'średnia'
+                          ? 'Średnia (100-900 pracowników)'
+                          : 'Duża (powyżej 900 pracowników)'}
                       </span>
                     </label>
                   ))}

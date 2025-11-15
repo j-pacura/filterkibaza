@@ -16,8 +16,6 @@ export function formatRevenue(revenue?: string): string {
 
 export function getCompanyTypeColor(type: string): string {
   switch (type) {
-    case 'klient':
-      return 'text-secondary-green';
     case 'partner':
       return 'text-secondary-orange';
     case 'potencjalny klient':
@@ -29,8 +27,6 @@ export function getCompanyTypeColor(type: string): string {
 
 export function getCompanyTypeLabel(type: string): string {
   switch (type) {
-    case 'klient':
-      return 'Klient';
     case 'partner':
       return 'Partner';
     case 'potencjalny klient':

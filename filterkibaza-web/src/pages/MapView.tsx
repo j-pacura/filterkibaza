@@ -73,21 +73,15 @@ export function MapView() {
               {/* Legend */}
               <div className="mt-4 flex items-center gap-6 pt-3 border-t border-gray-200">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-purple-500"></div>
                   <span className="text-xs text-gray-600">
-                    Klienci ({filteredCompanies.filter((c) => c.type === 'klient').length})
+                    Potencjalni klienci ({filteredCompanies.filter((c) => c.type === 'potencjalny klient').length})
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-orange-500"></div>
                   <span className="text-xs text-gray-600">
                     Partnerzy ({filteredCompanies.filter((c) => c.type === 'partner').length})
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                  <span className="text-xs text-gray-600">
-                    Potencjalni ({filteredCompanies.filter((c) => c.type === 'potencjalny klient').length})
                   </span>
                 </div>
               </div>
