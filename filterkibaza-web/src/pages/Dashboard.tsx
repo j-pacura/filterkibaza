@@ -1,8 +1,6 @@
-import { motion } from 'framer-motion';
-import { Building2, Users, Target, MapPin, TrendingUp, Sparkles } from 'lucide-react';
+import { Building2, Users, Award, MapPin } from 'lucide-react';
 import { useCompanies } from '@/hooks/useCompanies';
 import { Loading } from '@/components/common/Loading';
-import { StatCard } from '@/components/dashboard/StatCard';
 import {
   BarChart,
   Bar,
@@ -14,11 +12,7 @@ import {
   PieChart,
   Pie,
   Cell,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar
+  Legend
 } from 'recharts';
 
 export function Dashboard() {
@@ -39,406 +33,238 @@ export function Dashboard() {
 
   const regionData = Object.entries(stats.by_region)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
+    .slice(0, 8)
     .map(([name, value]) => ({
       name: name.charAt(0).toUpperCase() + name.slice(1),
-      value,
+      value
     }));
 
   const industryData = Object.entries(stats.by_industry)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
+    .slice(0, 6)
     .map(([name, value]) => ({
       name: name.charAt(0).toUpperCase() + name.slice(1),
-      value,
+      value
     }));
 
-  // Size distribution data
-  const sizeData = Object.entries(stats.by_size || {})
-    .filter(([name]) => name !== 'nieznana')
-    .map(([name, value]) => ({
-      subject: name.charAt(0).toUpperCase() + name.slice(1),
-      value,
-      fullMark: Math.max(...Object.values(stats.by_size || {}))
-    }));
-
-  const statCards = [
-    {
-      title: 'Wszystkie Firmy',
-      value: stats.total,
-      icon: Building2,
-      color: '#0066FF',
-      gradient: 'from-blue-500 to-blue-600',
-      trend: 8.5
-    },
-    {
-      title: 'Potencjalni Klienci',
-      value: stats.by_type['potencjalny klient'] || 0,
-      icon: Users,
-      color: '#9C27B0',
-      gradient: 'from-purple-500 to-purple-600',
-      trend: 12.3
-    },
-    {
-      title: 'Partnerzy',
-      value: stats.by_type.partner || 0,
-      icon: Target,
-      color: '#FF6B35',
-      gradient: 'from-orange-500 to-orange-600',
-      trend: 5.7
-    },
-    {
-      title: 'Województwa',
-      value: Object.keys(stats.by_region).length,
-      icon: MapPin,
-      color: '#00C853',
-      gradient: 'from-green-500 to-green-600',
-      trend: 0
-    },
-  ];
+  const COLORS = {
+    partner: '#2563eb',
+    client: '#8b5cf6'
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 pb-12 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero Section with Background Image */}
+      <div className="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative container mx-auto px-6 py-12">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-bold mb-3">Dashboard - Przegląd Bazy</h1>
+            <p className="text-blue-100 text-lg">
+              Kompleksowa analityka i statystyki dla {stats.total} firm w bazie danych
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12 text-center"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/10 backdrop-blur-lg border border-white/20"
-          >
-            <Sparkles className="w-5 h-5 text-yellow-400" />
-            <span className="text-white/90 text-sm font-medium">FiltroKibaza Analytics</span>
-          </motion.div>
-
-          <h1 className="text-6xl font-black text-white mb-4 tracking-tight">
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-            >
-              Dashboard
-            </motion.span>
-          </h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-white/60 text-lg max-w-2xl mx-auto"
-          >
-            Kompleksowy przegląd bazy firm związanych z filtracją przemysłową
-          </motion.p>
-        </motion.div>
-
+      <div className="container mx-auto px-6 py-8">
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {statCards.map((stat, index) => (
-            <StatCard key={stat.title} {...stat} index={index} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Total Companies */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className="bg-blue-100 p-3 rounded-lg">
+                <Building2 className="w-6 h-6 text-blue-600" />
+              </div>
+              <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                +5.8%
+              </span>
+            </div>
+            <h3 className="text-gray-600 text-sm font-medium mb-1">Wszystkie Firmy</h3>
+            <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+          </div>
+
+          {/* Potential Clients */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className="bg-purple-100 p-3 rounded-lg">
+                <Users className="w-6 h-6 text-purple-600" />
+              </div>
+              <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                +12.3%
+              </span>
+            </div>
+            <h3 className="text-gray-600 text-sm font-medium mb-1">Potencjalni Klienci</h3>
+            <p className="text-3xl font-bold text-gray-900">
+              {stats.by_type['potencjalny klient'] || 0}
+            </p>
+          </div>
+
+          {/* Partners */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className="bg-blue-100 p-3 rounded-lg">
+                <Award className="w-6 h-6 text-blue-600" />
+              </div>
+              <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                +7.2%
+              </span>
+            </div>
+            <h3 className="text-gray-600 text-sm font-medium mb-1">Partnerzy</h3>
+            <p className="text-3xl font-bold text-gray-900">{stats.by_type['partner'] || 0}</p>
+          </div>
+
+          {/* Regions */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className="bg-green-100 p-3 rounded-lg">
+                <MapPin className="w-6 h-6 text-green-600" />
+              </div>
+              <span className="text-sm font-medium text-gray-500 bg-gray-50 px-2 py-1 rounded">
+                Stałe
+              </span>
+            </div>
+            <h3 className="text-gray-600 text-sm font-medium mb-1">Województwa</h3>
+            <p className="text-3xl font-bold text-gray-900">
+              {Object.keys(stats.by_region).length}
+            </p>
+          </div>
         </div>
 
-        {/* Charts Section */}
+        {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* Region Chart with gradient */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
-            className="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
-                  <TrendingUp className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Top 10 Województw</h2>
-                  <p className="text-white/50 text-sm">Najwięcej firm w regionie</p>
-                </div>
-              </div>
-
-              <ResponsiveContainer width="100%" height={350}>
-                <BarChart data={regionData}>
-                  <defs>
-                    <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0066FF" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#0066FF" stopOpacity={0.3}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis
-                    dataKey="name"
-                    angle={-45}
-                    textAnchor="end"
-                    height={100}
-                    tick={{ fontSize: 12, fill: 'rgba(255,255,255,0.7)' }}
-                  />
-                  <YAxis tick={{ fill: 'rgba(255,255,255,0.7)' }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      border: 'none',
-                      borderRadius: '12px',
-                      color: 'white',
-                      backdropFilter: 'blur(10px)'
-                    }}
-                  />
-                  <Bar
-                    dataKey="value"
-                    fill="url(#colorBar)"
-                    radius={[12, 12, 0, 0]}
-                    animationDuration={1500}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+          {/* Regional Distribution */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-gray-900">Rozkład Regionalny</h2>
+              <span className="text-sm text-gray-500">Top 8 województw</span>
             </div>
-          </motion.div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={regionData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fill: '#6b7280', fontSize: 12 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={80}
+                />
+                <YAxis tick={{ fill: '#6b7280', fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px'
+                  }}
+                />
+                <Bar dataKey="value" fill="#2563eb" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
 
-          {/* Type Pie Chart */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.7 }}
-            className="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-orange-500 shadow-lg">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Podział według typu</h2>
-                  <p className="text-white/50 text-sm">Struktura bazy danych</p>
-                </div>
-              </div>
-
-              <ResponsiveContainer width="100%" height={350}>
-                <PieChart>
-                  <defs>
-                    <linearGradient id="partnerGradient" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#FF6B35" />
-                      <stop offset="100%" stopColor="#FF8C66" />
-                    </linearGradient>
-                    <linearGradient id="clientGradient" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#9C27B0" />
-                      <stop offset="100%" stopColor="#BA68C8" />
-                    </linearGradient>
-                  </defs>
-                  <Pie
-                    data={typeData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={(props) => {
-                      const data = typeData.find((d) => d.name === props.name);
-                      return `${props.name}: ${data?.percentage}%`;
-                    }}
-                    outerRadius={120}
-                    innerRadius={60}
-                    fill="#8884d8"
-                    dataKey="value"
-                    animationDuration={1500}
-                  >
-                    {typeData.map((entry) => (
-                      <Cell
-                        key={`cell-${entry.name}`}
-                        fill={entry.name === 'Partnerzy' ? 'url(#partnerGradient)' : 'url(#clientGradient)'}
-                        stroke="rgba(255,255,255,0.2)"
-                        strokeWidth={2}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      border: 'none',
-                      borderRadius: '12px',
-                      color: 'white',
-                      backdropFilter: 'blur(10px)'
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-
-              <div className="flex justify-center gap-6 mt-4">
-                {typeData.map((entry) => (
-                  <div key={entry.name} className="flex items-center gap-2">
-                    <div className={`w-4 h-4 rounded-full ${
-                      entry.name === 'Partnerzy' ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gradient-to-r from-purple-500 to-purple-600'
-                    }`} />
-                    <span className="text-white/80 text-sm font-medium">
-                      {entry.name} ({entry.value})
-                    </span>
-                  </div>
-                ))}
-              </div>
+          {/* Type Distribution */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-gray-900">Podział według typu</h2>
+              <span className="text-sm text-gray-500">{stats.total} firm</span>
             </div>
-          </motion.div>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={typeData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={(props) => {
+                    const entry = typeData.find((d) => d.name === props.name);
+                    return entry ? `${entry.name}: ${entry.percentage}%` : '';
+                  }}
+                  outerRadius={100}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {typeData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={entry.name === 'Partnerzy' ? COLORS.partner : COLORS.client}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px'
+                  }}
+                />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        {/* Industry and Size Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Industry Chart */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* Industry Distribution */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-gray-900">Top 6 Branż</h2>
+            <span className="text-sm text-gray-500">Według liczby firm</span>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={industryData} layout="horizontal">
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis type="number" tick={{ fill: '#6b7280', fontSize: 12 }} />
+              <YAxis
+                type="category"
+                dataKey="name"
+                tick={{ fill: '#6b7280', fontSize: 12 }}
+                width={120}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '8px'
+                }}
+              />
+              <Bar dataKey="value" fill="#8b5cf6" radius={[0, 8, 8, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
-                  <Building2 className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Top 8 Branż</h2>
-                  <p className="text-white/50 text-sm">Najpopularniejsze sektory</p>
-                </div>
+        {/* Quick Stats Footer */}
+        <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600">
+                {stats.by_size?.duża || 0}
               </div>
-
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={industryData} layout="vertical">
-                  <defs>
-                    <linearGradient id="industryGradient" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="5%" stopColor="#FF6B35" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#FF6B35" stopOpacity={0.3}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.7)' }} />
-                  <YAxis
-                    dataKey="name"
-                    type="category"
-                    width={150}
-                    tick={{ fontSize: 12, fill: 'rgba(255,255,255,0.7)' }}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      border: 'none',
-                      borderRadius: '12px',
-                      color: 'white',
-                      backdropFilter: 'blur(10px)'
-                    }}
-                  />
-                  <Bar
-                    dataKey="value"
-                    fill="url(#industryGradient)"
-                    radius={[0, 12, 12, 0]}
-                    animationDuration={1500}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="text-sm text-gray-600 mt-1">Duże firmy</div>
             </div>
-          </motion.div>
-
-          {/* Size Radar Chart */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-blue-500 shadow-lg">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Wielkość Firm</h2>
-                  <p className="text-white/50 text-sm">Rozkład według rozmiaru</p>
-                </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-purple-600">
+                {stats.by_size?.średnia || 0}
               </div>
-
-              <ResponsiveContainer width="100%" height={400}>
-                <RadarChart data={sizeData}>
-                  <defs>
-                    <linearGradient id="sizeGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#00C853" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#00C853" stopOpacity={0.3}/>
-                    </linearGradient>
-                  </defs>
-                  <PolarGrid stroke="rgba(255,255,255,0.2)" />
-                  <PolarAngleAxis
-                    dataKey="subject"
-                    tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
-                  />
-                  <PolarRadiusAxis tick={{ fill: 'rgba(255,255,255,0.7)' }} />
-                  <Radar
-                    name="Firmy"
-                    dataKey="value"
-                    stroke="#00C853"
-                    fill="url(#sizeGradient)"
-                    fillOpacity={0.6}
-                    animationDuration={1500}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      border: 'none',
-                      borderRadius: '12px',
-                      color: 'white',
-                      backdropFilter: 'blur(10px)'
-                    }}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
+              <div className="text-sm text-gray-600 mt-1">Średnie firmy</div>
             </div>
-          </motion.div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-600">
+                {stats.by_size?.mała || 0}
+              </div>
+              <div className="text-sm text-gray-600 mt-1">Małe firmy</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-600">
+                {Object.keys(stats.by_industry).length}
+              </div>
+              <div className="text-sm text-gray-600 mt-1">Branż</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
