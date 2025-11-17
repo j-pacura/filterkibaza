@@ -2,11 +2,11 @@
   "metadata": {
     "title": "Baza firm - Filtracja i systemy przemysłowe",
     "description": "Kompleksowa baza danych firm i potencjalnych klientów dla firmy produkującej i sprzedającej szeroko pojętą filtrację",
-    "total_companies": 278,
+    "total_companies": 274,
     "created_date": "2025-11-14",
-    "version": "1.4",
+    "version": "1.5",
     "coverage": "Polska - wszystkie województwa",
-    "last_updated": "2025-11-16"
+    "last_updated": "2025-11-17"
   },
   "companies": [
     {
@@ -40,7 +40,7 @@
       "type": "potencjalny klient",
       "lat": 50.9713,
       "lng": 16.9335,
-      "address": "ul. LG 1A, Biskupice Podgórne",
+      "address": "ul. LG 1A, 55-040 Biskupice Podgórne",
       "phone": "+48 799 393 393",
       "website": "https://lgensol.pl",
       "email": "lgrekrutacja@lgensol.com",
@@ -1872,7 +1872,7 @@
       "lng": 21.4726,
       "address": "ul. 3 Maja 101, 38-200 Jasło",
       "phone": "+48 13 443 77 00",
-      "website": "http://www.rafineria-jaslo.pl",
+      "website": "https://www.rafineria-jaslo.pl",
       "description": "Producent asfaltów i produktów ropopochodnych",
       "size": "średnia"
     },
@@ -1906,8 +1906,8 @@
       "lng": 22.03,
       "address": "ul. Hetmańska 120, 35-078 Rzeszów",
       "phone": "+48 17 865 11 11",
-      "website": "https://pwc.com",
-      "description": "Produkcja silników lotniczych i komponentów",
+      "website": "https://www.prattwhitney.com",
+      "description": "Producent silników lotniczych (Pratt & Whitney). Zaawansowane procesy odlewnicze i obróbki metali wymagają filtracji pyłów i olejów.",
       "size": "duża"
     },
     {
@@ -3717,42 +3717,6 @@
       "size": "średnia"
     },
     {
-      "id": 209,
-      "name": "KLIMEX Kielce - Systemy HVAC",
-      "region": "świętokrzyskie",
-      "city": "Kielce",
-      "industry": "HVAC",
-      "employees": "25",
-      "potential": "wysoki",
-      "type": "partner",
-      "lat": 50.8661,
-      "lng": 20.6286,
-      "address": "ul. Warszawska 150, 25-547 Kielce",
-      "phone": "+48 41 344 92 00",
-      "website": "https://klimex-kielce.pl",
-      "email": "biuro@klimex-kielce.pl",
-      "description": "Dystrybutor systemów wentylacji, klimatyzacji i filtrów dla przemysłu",
-      "size": "mała"
-    },
-    {
-      "id": 210,
-      "name": "VENTUS - Wentylacja Przemysłowa",
-      "region": "świętokrzyskie",
-      "city": "Kielce",
-      "industry": "wentylacja przemysłowa",
-      "employees": "18",
-      "potential": "wysoki",
-      "type": "partner",
-      "lat": 50.8661,
-      "lng": 20.6286,
-      "address": "ul. Zagórska 34, 25-528 Kielce",
-      "phone": "+48 41 368 45 00",
-      "website": "https://ventus-kielce.pl",
-      "email": "kontakt@ventus-kielce.pl",
-      "description": "Projektowanie i montaż systemów wentylacji przemysłowej i odpylania",
-      "size": "mała"
-    },
-    {
       "id": 211,
       "name": "PWiK TARNÓW",
       "region": "małopolskie",
@@ -4688,44 +4652,6 @@
       "email": "biuro@wielun-azoty.pl",
       "description": "Producent nawozów azotowych i chemikaliów. Procesy syntezy amoniaku wymagają zaawansowanej filtracji gazów.",
       "size": "średnia"
-    },
-    {
-      "id": 261,
-      "name": "AIR-TECH Częstochowa - Systemy Wentylacji",
-      "region": "śląskie",
-      "city": "Częstochowa",
-      "industry": "HVAC",
-      "employees": "42",
-      "revenue": "22 mln zł",
-      "potential": "średni",
-      "type": "partner",
-      "lat": 50.8045,
-      "lng": 19.1289,
-      "address": "ul. Broniewskiego 12, 42-200 Częstochowa",
-      "phone": "+48 34 324 56 00",
-      "website": "https://www.airtech-czestochowa.pl",
-      "email": "biuro@airtech-czestochowa.pl",
-      "description": "Instalacje wentylacyjne dla przemysłu. Potencjalny partner w dystrybucji filtrów przemysłowych dla hutnictwa i cementowni.",
-      "size": "mała"
-    },
-    {
-      "id": 262,
-      "name": "KLIMAT-SERWIS Zawiercie",
-      "region": "śląskie",
-      "city": "Zawiercie",
-      "industry": "HVAC",
-      "employees": "28",
-      "revenue": "14 mln zł",
-      "potential": "średni",
-      "type": "partner",
-      "lat": 50.4912,
-      "lng": 19.4234,
-      "address": "ul. Poprzeczna 8, 42-400 Zawiercie",
-      "phone": "+48 32 672 45 00",
-      "website": "https://www.klimat-zawiercie.pl",
-      "email": "kontakt@klimat-zawiercie.pl",
-      "description": "Kompleksowe systemy klimatyzacji i wentylacji. Partner w obsłudze lokalnych zakładów przemysłowych.",
-      "size": "mała"
     },
     {
       "id": 263,
@@ -9781,7 +9707,7 @@
     ]
   },
   "statistics": {
-    "total": 278,
+    "total": 274,
     "by_region": {
       "dolnośląskie": 20,
       "kujawsko-pomorskie": 1,
@@ -9796,16 +9722,16 @@
       "warmińsko-mazurskie": 1,
       "wielkopolskie": 23,
       "łódzkie": 27,
-      "śląskie": 31,
-      "świętokrzyskie": 26
+      "śląskie": 29,
+      "świętokrzyskie": 24
     },
     "by_type": {
-      "partner": 49,
+      "partner": 45,
       "potencjalny klient": 229
     },
     "by_industry": {
       "AGD": 3,
-      "HVAC": 9,
+      "HVAC": 6,
       "HVAC i filtry": 1,
       "MRO/dystrybucja": 1,
       "automotive": 2,
@@ -9906,20 +9832,19 @@
       "tytoniowy": 1,
       "usługi przemysłowe": 1,
       "wentylacja i filtry": 1,
-      "wentylacja przemysłowa": 1,
       "woda": 5,
       "woda i ścieki": 8
     },
     "by_size": {
       "duża": 88,
-      "mała": 49,
+      "mała": 45,
       "nieznana": 16,
       "średnia": 125
     },
     "by_potential": {
       "bardzo wysoki": 1,
-      "wysoki": 237,
-      "średni": 40
+      "wysoki": 235,
+      "średni": 38
     }
   }
 }
