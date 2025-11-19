@@ -6,7 +6,7 @@
   command = "npm install && npm run build"
 
   # Katalog publikacji - Vite domyślnie buduje do dist/
-  publish = "filterkibaza-web/dist"
+  publish = "dist"
 
 # Przekierowania dla React Router (SPA)
 [[redirects]]
